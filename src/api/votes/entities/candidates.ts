@@ -4,11 +4,11 @@ import { PrismaClient } from '@prisma/client';
 export class Candidates extends BaseRepository {
   private _id: number;
   private _name: string;
-  private _votes: string;
+  private _votes: number;
 
   constructor(
     name?: string,
-    votes?: string,
+    votes?: number,
     prismaClient = new PrismaClient(),
   ) {
     super(prismaClient.candidate);
@@ -20,7 +20,7 @@ export class Candidates extends BaseRepository {
     return this._name;
   }
 
-  get votes(): string {
+  get votes(): number {
     return this._votes;
   }
 
@@ -28,7 +28,7 @@ export class Candidates extends BaseRepository {
     this._name = name;
   }
 
-  set setVotes(votes: string) {
+  set setVotes(votes: number) {
     this._votes = votes;
   }
 }
