@@ -26,12 +26,13 @@ export class VotesController {
     return this.votesService.getCandidates();
   }
 
-  @HttpCode(204)
+  @HttpCode(201)
   @Post('/candidates')
   addCandidate(@Body() candidate: Candidates): Promise<Candidates> {
     return this.votesService.addCandidate(candidate);
   }
 
+  @HttpCode(204)
   @Patch('/candidates/:id')
   updateCandidate(
     @Param('id') id: number,
@@ -40,12 +41,14 @@ export class VotesController {
     return this.votesService.updateCandidate(id, candidate);
   }
 
+  @HttpCode(202)
   @Delete('/candidates/:id')
   deleteCandidate(@Param('id') id: number): Promise<Candidates> {
     return this.votesService.deleteCandidate(id);
   }
 
-  @Post('/candidates/:id/vote')
+  @HttpCode(201)
+  @Patch('/candidates/:id/vote')
   addVote(@Param('id') id: number, @Body() voter: Voter): Promise<Voter> {
     return this.votesService.vote(id, voter);
   }
