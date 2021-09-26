@@ -1,0 +1,19 @@
+datasource db {
+  provider = "mysql"
+  url = "mysql://root:123456@localhost:3306/prisma_db"
+}
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+model Candidate {
+  id        Int     @id @default(autoincrement())
+  name  String
+  votes Int
+}
+
+model Voter {
+  id    Int     @id @default(autoincrement())
+  voter_registration_card String  @unique
+}
